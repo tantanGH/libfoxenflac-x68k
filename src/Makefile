@@ -1,6 +1,6 @@
 # elf2x68k インストールパス
 ifndef ELF2X68K_DIR
-	ELF2X68K_DIR=/opt/homebrew/Cellar/elf2x68k/20260301
+	ELF2X68K_DIR=/opt/homebrew/Cellar/elf2x68k/20260331
 endif
 
 # デフォルトサフィックスを削除
@@ -10,9 +10,6 @@ endif
 CC = m68k-xelf-gcc
 AS = m68k-xelf-as
 AR = m68k-xelf-ar
-
-# HAS to GAS コンバータ
-HAS2GAS = python3 has2gas.py
 
 # 出力アーカイブファイル名
 TARGET_FILE_000 = ../lib/libfoxenflac.a
@@ -29,7 +26,7 @@ COMMON_FLAGS_000 = -m68000 -O3 -msoft-float \
 					-fomit-frame-pointer \
 				    -finline-functions -finline-limit=10000 \
 				    -falign-functions=4 -falign-loops=4 \
-				    -funroll-loops -fpeel-loops -fno-builtin \
+				    -funroll-loops -fpeel-loops \
 				   $(INCLUDE_FLAGS)
 
 CFLAGS_000 = -DFX_FLAC_NO_CRC -D__OPT_X68K__ $(COMMON_FLAGS_000)
@@ -38,16 +35,16 @@ COMMON_FLAGS_030 = -m68030 -O3 -msoft-float \
 					-fomit-frame-pointer \
 				    -finline-functions -finline-limit=10000 \
 				    -falign-functions=16 -falign-loops=16 \
-				    -fno-unroll-loops -fno-peel-loops -fno-builtin \
+				    -fno-unroll-loops -fno-peel-loops \
 				   $(INCLUDE_FLAGS)
 
 CFLAGS_030 = -DFX_FLAC_NO_CRC -D__OPT_X68K__ $(COMMON_FLAGS_030)
 
 COMMON_FLAGS_060 = -m68060 -O3 -msoft-float \
 					-fomit-frame-pointer \
-				    -finline-functions -finline-limit=10000 \
-				    -falign-functions=16 -falign-loops=16 \
-				    -fno-unroll-loops -fno-peel-loops -fno-builtin \
+				    -finline-functions -finline-limit=5000 \
+				    -falign-functions=16 -falign-loops=4 \
+				    -fno-unroll-loops -fno-peel-loops \
 				   $(INCLUDE_FLAGS)
 
 CFLAGS_060 = -DFX_FLAC_NO_CRC -D__OPT_X68K__ $(COMMON_FLAGS_060)
