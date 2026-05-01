@@ -21,21 +21,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#ifdef XDEV68K
-#include <stdio.h>
-#include <stdlib.h>
-#include "flac.h"
-#else
 #include <foxen/flac.h>
-#endif
 
 #if 0
 /* Set FX_FLAC_NO_CRC if you control the input data and already performed other
    integrity checks. This makes the decoder significantly faster. */
-#define FX_FLAC_NO_CRC
-#endif
-
-#ifdef XDEV68K
 #define FX_FLAC_NO_CRC
 #endif
 
